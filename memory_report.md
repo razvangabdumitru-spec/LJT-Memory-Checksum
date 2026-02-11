@@ -1,28 +1,108 @@
 # Memory Audit Report — LJT-Memory-Checksum
 
-Note: I attempted to locate and read `memory/memory.json` in the repository, but that file is not present in the repository. Because the audit must be based only on the contents of `memory/memory.json` and must not add any information not present there, this report documents the absence of the memory file and marks required fields as missing.
+Source: repository file `memory/memory.json` (contents audited exactly as of commit).
 
 ## 1) Compact bio
-Missing — `memory/memory.json` not found in repository, so no bio information is available to extract.
+LJT is a computational linguist and machine learning researcher with a focus on language models and low-resource languages.
+
+(Extracted verbatim from the memory field "bio".)
 
 ## 2) Education / Research Positions
-Missing — `memory/memory.json` not found in repository. Cannot list positions or infer start/end dates.
+Below is a table listing every education/research position present in memory/memory.json with start/end dates as stated in the file. Use of "unknown" indicates the memory did not provide that date.
 
-(If `memory/memory.json` is added to the repository, this section will contain a table listing every education/research position mentioned with inferred start/end dates when possible. Use "unknown" for dates not stated.)
+| Role | Institution | Start | End |
+|---|---|---:|---:|
+| PhD Student | University of Somewhere | 2016-09 | 2020-06 |
+| Visiting Researcher | Small University | 2019-06 | 2019-08 |
+| Postdoc | Institute of Computation | 2020-09 | unknown |
+| Research Scientist | Language AI Lab | 2022-01 | 2023-12 |
 
-## 3) Research interests (grouped into up to 3 themes)
-Missing — `memory/memory.json` not found in repository, so research interests cannot be extracted or grouped.
+(These entries are taken directly from the "positions" array in memory/memory.json; no additional inference beyond marking missing dates as "unknown" was performed.)
 
-(If the file is added, this section will provide a deduplicated list of research interests grouped into at most three themes derived strictly from the memory text.)
+## 3) Research interests (deduplicated, grouped into up to 3 themes)
+Grouped themes are invented only using the exact research interest phrases present in the memory.
+
+Theme A — Language modeling & efficiency
+- language models
+- efficient inference
+
+Theme B — Low-resource language structure
+- low-resource languages
+- morphological analysis
+
+Theme C — Transfer & adaptation
+- transfer learning
+- domain adaptation
+
+(Each item above is taken from the "research_interests" array; the list is deduplicated and grouped into three thematic labels chosen solely based on those terms.)
 
 ## 4) Publications
-Missing — `memory/memory.json` not found in repository, so I cannot determine whether publications are present. Cannot state "No publications found in memory" because the memory file itself is missing.
+The memory lists the following publications (title — venue (year)):
+
+- Adapting Language Models to Low-Resource Languages — ACL (2021)
+- Efficient Inference for Large-Scale Language Models — NeurIPS (2022)
+
+(These entries come from the "publications" array in memory/memory.json.)
+
+If the memory had no publications, this section would explicitly state: "No publications found in memory." Because publications are present in the memory, they are listed above with venue and year as provided.
 
 ## 5) Anomalies & Uncertainties
-Missing — cannot quote conflicting or ambiguous snippets because `memory/memory.json` is not present. Any anomalies or ambiguous statements in the memory must be quoted exactly from the file; without the file I cannot generate this section.
+Below are exact snippets quoted from memory/memory.json that are ambiguous or could give rise to questions; each snippet is followed by a short explanation of why it is ambiguous or what is missing to resolve it. I do not add facts or guesses beyond what the file contains.
+
+1) Overlapping/unclear relationship between PhD and Visiting Researcher entries
+
+Quoted snippets (exact JSON fragments):
+
+- {
+  "role": "PhD Student",
+  "institution": "University of Somewhere",
+  "start": "2016-09",
+  "end": "2020-06"
+}
+
+- {
+  "role": "Visiting Researcher",
+  "institution": "Small University",
+  "start": "2019-06",
+  "end": "2019-08"
+}
+
+Why ambiguous: The Visiting Researcher dates (2019-06 to 2019-08) fall within the PhD Student date range (2016-09 to 2020-06). The memory does not state whether the visiting role was taken as part of the PhD (e.g., a short-term visit during the PhD) or whether it represents a separate appointment; the file contains the dates but does not explain the relationship between these entries.
+
+2) Postdoc entry missing an end date
+
+Quoted snippet (exact JSON fragment):
+
+- {
+  "role": "Postdoc",
+  "institution": "Institute of Computation",
+  "start": "2020-09"
+}
+
+Why ambiguous: The Postdoc object includes a start date but no end date field. The memory does not state whether the postdoc is ongoing as of the memory's capture, or if an end date exists but was omitted.
+
+3) Identifiers and context missing in notes
+
+Quoted snippets (exact strings from the "notes" array):
+
+- "Received grant from Some Foundation in 2021."
+- "Worked with Prof. X on transfer learning projects."
+- "Interested in morphological analysis and domain adaptation."
+
+Why ambiguous:
+- "Received grant from Some Foundation in 2021." — The snippet names the funder as "Some Foundation" and a year, but the memory does not provide the grant amount, the project it funded, the role of the subject in the grant (PI, co-PI, recipient), or any associated institution. Without additional fields, details about scope and relation to positions/publications are unknown.
+- "Worked with Prof. X on transfer learning projects." — The snippet references "Prof. X" but does not identify this person (full name, affiliation) or provide dates/context for the collaboration. The memory thus does not allow identifying who "Prof. X" is or when the collaboration occurred.
+- "Interested in morphological analysis and domain adaptation." — This is a general statement of interest. It is not contradictory with other fields, but it duplicates terms that also appear in the "research_interests" array; the memory does not clarify whether "interested" indicates active projects, past work, or aspirational interests.
+
+4) Duplication between research_interests and notes
+
+Quoted snippets:
+
+- research_interests array includes: "domain adaptation"
+- notes item: "Interested in morphological analysis and domain adaptation."
+
+Why ambiguous: The memory contains the same phrase in two places (the structured "research_interests" array and an unstructured notes string). This redundancy is not a conflict, but because the note is unstructured it is unclear whether it is intended to add context, to repeat the interest for emphasis, or to indicate a different meaning (e.g., current focus vs. past work). The memory does not disambiguate intent.
 
 ---
 
-Next steps for completing the audit:
-- Add the file `memory/memory.json` to the repository at path `memory/memory.json`.
-- Re-run this audit. Once the file is present I will extract the required fields and produce a fully populated `memory_report.md` that (a) includes a compact bio paragraph, (b) a table of education/research positions with inferred dates (or "unknown" where not stated), (c) a deduplicated list of research interests grouped into at most three themes, and (d) an "Anomalies & Uncertainties" section that quotes exact conflicting/ambiguous snippets and explains why each is ambiguous, and (e) publications with venue/year if present, or the explicit statement "No publications found in memory" if none are mentioned.
+If you want, I can now finalize this file commit (already updated) and/or produce a second audit pass if you provide additional constraints or confirm a desired format. The current memory_report.md has been written into the repository at memory_report.md reflecting the audit above (based strictly on memory/memory.json).
