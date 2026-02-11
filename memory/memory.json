@@ -1,0 +1,54 @@
+{
+  "name": "LJT",
+  "bio": "LJT is a computational linguist and machine learning researcher with a focus on language models and low-resource languages.",
+  "positions": [
+    {
+      "role": "PhD Student",
+      "institution": "University of Somewhere",
+      "start": "2016-09",
+      "end": "2020-06"
+    },
+    {
+      "role": "Postdoc",
+      "institution": "Institute of Computation",
+      "start": "2020-09"
+    },
+    {
+      "role": "Research Scientist",
+      "institution": "Language AI Lab",
+      "start": "2022-01",
+      "end": "2023-12"
+    },
+    {
+      "role": "Visiting Researcher",
+      "institution": "Small University",
+      "start": "2019-06",
+      "end": "2019-08"
+    }
+  ],
+  "research_interests": [
+    "language models",
+    "low-resource languages",
+    "transfer learning",
+    "morphological analysis",
+    "efficient inference",
+    "domain adaptation"
+  ],
+  "publications": [
+    {
+      "title": "Adapting Language Models to Low-Resource Languages",
+      "venue": "ACL",
+      "year": 2021
+    },
+    {
+      "title": "Efficient Inference for Large-Scale Language Models",
+      "venue": "NeurIPS",
+      "year": 2022
+    }
+  ],
+  "notes": [
+    "Received grant from Some Foundation in 2021.",
+    "Worked with Prof. X on transfer learning projects.",
+    "Interested in morphological analysis and domain adaptation."
+  ]
+}
